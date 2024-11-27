@@ -1,0 +1,15 @@
+.header {
+    background-color: #211e20;
+    height: 10rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.add {
+    font-size: 2rem;
+    width: 15rem;
+    height: 4rem;
+    border-radius: 15px;
+}

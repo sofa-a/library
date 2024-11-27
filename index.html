@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="header.css">
+    <link rel="stylesheet" href="form.css">
+</head>
+<body>
+    <form action="https://httpbin.org/post">
+        <div>
+            <label for="title">TITLE</label>
+            <input type="text" name="title">
+        </div>
+        <div>
+            <label for="author">AUTHOR</label>
+            <input type="text" name="author">
+        </div>
+        <div>
+            <label for="pages">NO PAGES</label>
+            <input type="text" name="pages">
+        </div>
+    </form>
+    <div class="header">
+        <button class="add">ADD BOOK</button>
+    </div>
+    <div class="container">
+        <div class="card">
+            <p class="title">The Lies of Locke Lamora</p>
+            <p class="author">Author: Scott Lynch</p>
+            <p class="pages">No. Pages: 752</p>
+            <button class="remove">Remove Book</button>
+            <button class="read">Read</button>
+        </div>
+    </div>
+</body>
+</html>
