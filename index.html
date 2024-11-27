@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="header.css">
     <link rel="stylesheet" href="form.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <form action="https://httpbin.org/post">
+    <form>
         <div>
             <label for="title">TITLE</label>
             <input type="text" name="title">
@@ -22,6 +23,7 @@
             <label for="pages">NO PAGES</label>
             <input type="text" name="pages">
         </div>
+        <button id="submit">Add Book</button>
     </form>
     <div class="header">
         <button class="add">ADD BOOK</button>
@@ -31,8 +33,8 @@
             <p class="title">The Lies of Locke Lamora</p>
             <p class="author">Author: Scott Lynch</p>
             <p class="pages">No. Pages: 752</p>
-            <button class="remove">Remove Book</button>
             <button class="read">Read</button>
+            <button class="remove">Remove Book</button>
         </div>
     </div>
 </body>
