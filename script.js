@@ -1,46 +1,64 @@
-function Book(name, image, summary) {
-    this.name = name;
-    this.image = image;
-    this.summary = summary;
+const form = document.querySelector("form");
+const add = document.querySelector(".add");
+const container = document.querySelector(".container");
+const library = [];
+const buttons = document.querySelectorAll('button');
+
+function Book(title, author, pages) {
+    this.title = title;
+    this.author = author;
+    this.pages = pages;
+    this.read = false;
 }
 
-const library = [];
+const createElement = (tag, properties = {}, ...classes) => {
+    const element = document.createElement(tag);
+    Object.assign(element, properties);
+    if (classes.length) element.classList.add(...classes);
+    return element;
+}
 
-const addBook = (book) => library.push(book);
-
-const form = document.querySelector("form");
-const container = document.querySelector(".container");
+const addBook = (book) => {
+    library.push(book);
+    const card = createElement("div", {}, "card");
+    const title = createElement("p", {textContent: book.title}, "title");
+    const author = createElement("p", {textContent: "Author: " + book.author}, "author");
+    const pages = createElement("p", {textContent: "No. Pages: " + book.pages}, "pages");    
+    const read = createElement("button", {textContent: "unread"}, "read");
+    const remove = createElement("button", {textContent: "remove"}, "remove");
+    
+    [title, author, pages, read, remove].forEach(element => card.appendChild(element));
+    container.appendChild(card);
+    ["title", "author", "pages"].forEach(name => (form.elements[name].value = ""));
+    buttons = document.querySelectorAll('button');
+}
 
 form.addEventListener("submit", function(event) {
-    const card = document.createElement("div");
-    card.classList.add("card");
-    const title = document.createElement("p");
-    title.textContent = form.elements["title"].value;
-    title.classList.add("title");
-    const author = document.createElement("p");
-    author.textContent = form.elements["author"].value;
-    author.classList.add("author");
-    const pages = document.createElement("p");
-    pages.classList.add("pages");
-    pages.textContent = form.elements["pages"].value;
-
-    const read = document.createElement("button");
-    read.textContent = "Read";
-    read.classList.add("read");
-    const remove = document.createElement("button");
-    remove.textContent = "Remove Book"
-    remove.classList.add("remove");
-
-    card.appendChild(title);
-    card.appendChild(author);
-    card.appendChild(pages);
-    card.appendChild(read);
-    card.appendChild(remove);
-    container.appendChild(card);
-
-    form.elements["title"].value = "";
-    form.elements["author"].value = "";
-    form.elements["pages"].value = "";
-
     event.preventDefault();
+    const book = new Book(form.elements["title"].value, form.elements["author"].value, form.elements["pages"].value)
+    addBook(book); 
 });
+
+add.addEventListener("click", function() {
+    form.style.display = "flex";
+});
+
+exit.addEventListener("click", function() {
+    form.style.display = "none";
+});
+
+
+buttons.forEach(read => {
+    read.addEventListener("click", function() {
+        if (this.textContent == "read") this.textContent = "unread";
+        else if (this.textContent == "unread") this.textContent = "read";
+    });
+})
+
+buttons.forEach(remove => {
+    remove.addEventListener("click", function() {
+        const card = this.closest(".card");
+        card.remove();
+    });
+})
+
