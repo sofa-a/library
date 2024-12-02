@@ -2,7 +2,7 @@ const form = document.querySelector("form");
 const add = document.querySelector(".add");
 const container = document.querySelector(".container");
 const library = [];
-const buttons = document.querySelectorAll('button');
+
 
 function Book(title, author, pages) {
     this.title = title;
@@ -47,18 +47,18 @@ exit.addEventListener("click", function() {
     form.style.display = "none";
 });
 
+const toggleRead = (target) => {
+    if (target.textContent == "read") target.textContent = "unread";
+    else if (target.textContent == "unread") target.textContent = "read";
+};
 
-buttons.forEach(read => {
-    read.addEventListener("click", function() {
-        if (this.textContent == "read") this.textContent = "unread";
-        else if (this.textContent == "unread") this.textContent = "read";
-    });
-})
+const removeCard = (target) => {
+    const card = target.closest(".card");
+    card.remove();
+};
 
-buttons.forEach(remove => {
-    remove.addEventListener("click", function() {
-        const card = this.closest(".card");
-        card.remove();
-    });
-})
-
+document.addEventListener("click", function(event) {
+    const target = event.target;
+    if (target.classList.contains("read")) toggleRead(target);
+    else if (target.classList.contains("remove")) removeCard(target);
+});
